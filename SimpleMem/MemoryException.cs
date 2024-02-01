@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace SimpleMem;
 
 public static class ErrorCodes
 {
-	/// <summary>
-	///  Lookup dictionary for relevant error codes and their meanings.
-	/// </summary>
-	public static Dictionary<uint, string> CodeLookup { get; } = new()
-	{
-		{ 5, "Access is denied" },
-		{ 6, "The handle is invalid" },
-		{ 8, "Not enough memory resources are available to process this command" },
-		{ 11, "An attempt was made to load a program with an incorrect format" },
-		{ 12, "The access code is invalid" },
-		{ 13, "The data is invalid" },
-		{ 14, "Not enough memory is available to complete this operation" },
-		{ 87, "Invalid parameter" },
-		{ 299, "Only part of a ReadProcessMemory or WriteProcessMemory request was completed" },
-		{ 487, "Attempt to access invalid address" },
-		{ 998, "Invalid access to memory location" }
-	};
+    /// <summary>
+    ///  Lookup dictionary for relevant error codes and their meanings.
+    /// </summary>
+    public static Dictionary<uint, string> CodeLookup { get; } = new()
+    {
+        { 5, "Access is denied" },
+        { 6, "The handle is invalid" },
+        { 8, "Not enough memory resources are available to process this command" },
+        { 11, "An attempt was made to load a program with an incorrect format" },
+        { 12, "The access code is invalid" },
+        { 13, "The data is invalid" },
+        { 14, "Not enough memory is available to complete this operation" },
+        { 87, "Invalid parameter" },
+        { 299, "Only part of a ReadProcessMemory or WriteProcessMemory request was completed" },
+        { 487, "Attempt to access invalid address" },
+        { 998, "Invalid access to memory location" }
+    };
 }
 
 /// <summary>
@@ -31,15 +30,16 @@ public static class ErrorCodes
 /// </summary>
 public class MemoryReadException : Exception
 {
-	/// <inheritdoc />
-	public MemoryReadException(string message) : base(message) {}
+    /// <inheritdoc />
+    public MemoryReadException(string message) : base(message) { }
 
-	/// <inheritdoc />
-	public MemoryReadException(uint error) :
-		base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") {}
+    /// <inheritdoc />
+    public MemoryReadException(uint error) :
+        base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}")
+    { }
 
-	/// <inheritdoc />
-	public MemoryReadException(string message, Exception innerException) : base(message, innerException) {}
+    /// <inheritdoc />
+    public MemoryReadException(string message, Exception innerException) : base(message, innerException) { }
 }
 
 /// <summary>
@@ -48,16 +48,17 @@ public class MemoryReadException : Exception
 /// </summary>
 public class MemoryWriteException : Exception
 {
-	/// <inheritdoc />
-	public MemoryWriteException() {}
+    /// <inheritdoc />
+    public MemoryWriteException() { }
 
-	/// <inheritdoc />
-	public MemoryWriteException(string message) : base(message) {}
+    /// <inheritdoc />
+    public MemoryWriteException(string message) : base(message) { }
 
-	/// <inheritdoc />
-	public MemoryWriteException(uint error) :
-		base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") {}
+    /// <inheritdoc />
+    public MemoryWriteException(uint error) :
+        base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}")
+    { }
 
-	/// <inheritdoc />
-	public MemoryWriteException(string message, Exception innerException) : base(message, innerException) {}
+    /// <inheritdoc />
+    public MemoryWriteException(string message, Exception innerException) : base(message, innerException) { }
 }
