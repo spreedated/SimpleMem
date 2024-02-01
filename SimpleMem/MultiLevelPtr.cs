@@ -31,14 +31,14 @@ public class MultiLevelPtr
 	/// <param name="offsets">The offsets needed to decipher the chain</param>
 	public MultiLevelPtr(IntPtr lpBaseAddress, params IntPtr[] offsets)
 	{
-		if (!offsets.Any())
+		if (offsets.Length == 0)
 		{
-			Base = lpBaseAddress;
+			this.Base = lpBaseAddress;
 		}
 		else
 		{
-			Base = lpBaseAddress;
-			Offsets = offsets.ToList();
+            this.Base = lpBaseAddress;
+            this.Offsets = offsets.ToList();
 		}
 	}
 
@@ -49,14 +49,14 @@ public class MultiLevelPtr
 	/// <param name="offsets">The offsets needed to decipher the chain</param>
 	public MultiLevelPtr(IntPtr lpBaseAddress, params int[] offsets)
 	{
-		Base = lpBaseAddress;
+        this.Base = lpBaseAddress;
 
-		if (!offsets.Any())
+		if (offsets.Length == 0)
 		{
 			return;
 		}
 
-		Offsets = ConvertInts(offsets);
+        this.Offsets = ConvertInts(offsets);
 	}
 
 	/// <summary>
@@ -68,24 +68,24 @@ public class MultiLevelPtr
 	/// <param name="offsets">Collection of offsets to append to the old base offsets</param>
 	public MultiLevelPtr(MultiLevelPtr baseMlPtr, params int[] offsets)
 	{
-		Base = baseMlPtr.Base;
+		this.Base = baseMlPtr.Base;
 
 		if (baseMlPtr.Offsets.Any())
 		{
 			foreach (var offset in baseMlPtr.Offsets)
 			{
-				Offsets.Add(offset);
+                this.Offsets.Add(offset);
 			}
 		}
 
-		if (!offsets.Any())
+		if (offsets.Length == 0)
 		{
 			return;
 		}
 
 		foreach (int offset in offsets)
 		{
-			Offsets.Add(new IntPtr(offset));
+            this.Offsets.Add(new IntPtr(offset));
 		}
 	}
 
@@ -98,24 +98,24 @@ public class MultiLevelPtr
 	/// <param name="offsets">Collection of offsets to append to the old base offsets</param>
 	public MultiLevelPtr(MultiLevelPtr baseMlPtr, params long[] offsets)
 	{
-		Base = baseMlPtr.Base;
+        this.Base = baseMlPtr.Base;
 
 		if (baseMlPtr.Offsets.Any())
 		{
 			foreach (var offset in baseMlPtr.Offsets)
 			{
-				Offsets.Add(offset);
+                this.Offsets.Add(offset);
 			}
 		}
 
-		if (!offsets.Any())
+		if (offsets.Length == 0)
 		{
 			return;
 		}
 
 		foreach (long offset in offsets)
 		{
-			Offsets.Add(new IntPtr(offset));
+            this.Offsets.Add(new IntPtr(offset));
 		}
 	}
 
@@ -126,14 +126,14 @@ public class MultiLevelPtr
 	/// <param name="offsets">The offsets needed to decipher the chain</param>
 	public MultiLevelPtr(long lpBaseAddress, params int[] offsets)
 	{
-		Base = new IntPtr(lpBaseAddress);
+        this.Base = new IntPtr(lpBaseAddress);
 
-		if (!offsets.Any())
+		if (offsets.Length == 0)
 		{
 			return;
 		}
 
-		Offsets = ConvertInts(offsets);
+        this.Offsets = ConvertInts(offsets);
 	}
 
 	/// <summary>
@@ -142,8 +142,8 @@ public class MultiLevelPtr
 	/// <param name="pointers">A chain of pointers to resolve</param>
 	public MultiLevelPtr(IntPtr[] pointers)
 	{
-		Base = pointers[0];
-		Offsets = pointers[1..];
+		this.Base = pointers[0];
+        this.Offsets = pointers[1..];
 	}
 
 	/// <summary>
@@ -152,8 +152,8 @@ public class MultiLevelPtr
 	/// <param name="pointers">A chain of pointers to resolve</param>
 	public MultiLevelPtr(int[] pointers)
 	{
-		Base = new IntPtr(pointers[0]);
-		Offsets = ConvertInts(pointers[1..]);
+		this.Base = new IntPtr(pointers[0]);
+        this.Offsets = ConvertInts(pointers[1..]);
 	}
 
 	/// <summary>
@@ -162,8 +162,8 @@ public class MultiLevelPtr
 	/// <param name="pointers">A chain of pointers to resolve</param>
 	public MultiLevelPtr(long[] pointers)
 	{
-		Base = new IntPtr(pointers[0]);
-		Offsets = ConvertLongs(pointers[1..]);
+		this.Base = new IntPtr(pointers[0]);
+        this.Offsets = ConvertLongs(pointers[1..]);
 	}
 
 	/// <summary>
@@ -178,8 +178,8 @@ public class MultiLevelPtr
 	/// <inheritdoc />
 	public override string ToString()
 	{
-		var sb = new StringBuilder($"MultiLevelPtr(Base={Base:X}, Offsets=[");
-		foreach (var offset in Offsets)
+		var sb = new StringBuilder($"MultiLevelPtr(Base={this.Base:X}, Offsets=[");
+		foreach (var offset in this.Offsets)
 		{
 			sb.Append($"{offset:X}, ");
 		}
@@ -189,7 +189,7 @@ public class MultiLevelPtr
 		return sb.ToString();
 	}
 
-	private static IList<IntPtr> ConvertInts(int[] ints)
+	private static List<IntPtr> ConvertInts(int[] ints)
 	{
 		var n = new List<IntPtr>(ints.Length);
 		foreach (int i in ints)
@@ -200,7 +200,7 @@ public class MultiLevelPtr
 		return n;
 	}
 
-	private static IList<IntPtr> ConvertLongs(long[] ints)
+	private static List<IntPtr> ConvertLongs(long[] ints)
 	{
 		var n = new List<IntPtr>(ints.Length);
 		foreach (long i in ints)
@@ -272,7 +272,7 @@ public static class MemoryExtensions
 	/// <returns></returns>
 	public static IntPtr StaticOffset(this Memory mem, int offset) => mem.ModuleBaseAddress + offset;
 	/// <inheritdoc cref="StaticOffset(SimpleMem.Memory,int)"/> 
-	public static IntPtr StaticOffset(this Memory mem, long offset) => new IntPtr((long) mem.ModuleBaseAddress + offset);
+	public static IntPtr StaticOffset(this Memory mem, long offset) => new((long)mem.ModuleBaseAddress + offset);
 }
 
 /// <summary>
