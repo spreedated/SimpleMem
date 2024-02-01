@@ -4,7 +4,7 @@
       <TargetFramework>net8.0</TargetFramework>
       <ImplicitUsings>disable</ImplicitUsings>
       <Nullable>disable</Nullable>
-      <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">True"</GeneratePackageOnBuild>
+      <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">True</GeneratePackageOnBuild>
       <Company>$(Authors)</Company>
       <Authors>stagecodes</Authors>
       <Description>Simple memory reader and writer for 32 and 64-bit processes</Description>
