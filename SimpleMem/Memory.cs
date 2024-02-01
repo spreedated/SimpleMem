@@ -71,7 +71,7 @@ public class Memory
 	///  for writing is AccessLevel.WRITE | AccessLevel.OPERATION.
 	///  AccessLevel.ALL_ACCESS gives full read-write access to the process.
 	/// </param>
-	public Memory(string processName, string? moduleName = null, long accessLevel = ACCESS_LEVEL.PROCESS_ALL_ACCESS)
+	public Memory(string processName, string moduleName = null, long accessLevel = ACCESS_LEVEL.PROCESS_ALL_ACCESS)
 	{
 		Process = GetProcess(processName);
 		ProcessAccessLevel = accessLevel;

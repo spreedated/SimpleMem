@@ -9,7 +9,7 @@ public static class ErrorCodes
 	/// <summary>
 	///  Lookup dictionary for relevant error codes and their meanings.
 	/// </summary>
-	public static readonly Dictionary<uint, string> CodeLookup = new()
+	public static Dictionary<uint, string> CodeLookup { get; } = new()
 	{
 		{ 5, "Access is denied" },
 		{ 6, "The handle is invalid" },
@@ -32,20 +32,14 @@ public static class ErrorCodes
 public class MemoryReadException : Exception
 {
 	/// <inheritdoc />
-	public MemoryReadException() {}
-
-	/// <inheritdoc />
-	protected MemoryReadException(SerializationInfo info, StreamingContext context) : base(info, context) {}
-
-	/// <inheritdoc />
-	public MemoryReadException(string? message) : base(message) {}
+	public MemoryReadException(string message) : base(message) {}
 
 	/// <inheritdoc />
 	public MemoryReadException(uint error) :
 		base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") {}
 
 	/// <inheritdoc />
-	public MemoryReadException(string? message, Exception? innerException) : base(message, innerException) {}
+	public MemoryReadException(string message, Exception? innerException) : base(message, innerException) {}
 }
 
 /// <summary>
@@ -58,15 +52,12 @@ public class MemoryWriteException : Exception
 	public MemoryWriteException() {}
 
 	/// <inheritdoc />
-	protected MemoryWriteException(SerializationInfo info, StreamingContext context) : base(info, context) {}
-
-	/// <inheritdoc />
-	public MemoryWriteException(string? message) : base(message) {}
+	public MemoryWriteException(string message) : base(message) {}
 
 	/// <inheritdoc />
 	public MemoryWriteException(uint error) :
 		base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") {}
 
 	/// <inheritdoc />
-	public MemoryWriteException(string? message, Exception? innerException) : base(message, innerException) {}
+	public MemoryWriteException(string message, Exception? innerException) : base(message, innerException) {}
 }
