@@ -39,7 +39,7 @@ public class MemoryReadException : Exception
 		base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") {}
 
 	/// <inheritdoc />
-	public MemoryReadException(string message, Exception? innerException) : base(message, innerException) {}
+	public MemoryReadException(string message, Exception innerException) : base(message, innerException) {}
 }
 
 /// <summary>
@@ -59,5 +59,5 @@ public class MemoryWriteException : Exception
 		base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") {}
 
 	/// <inheritdoc />
-	public MemoryWriteException(string message, Exception? innerException) : base(message, innerException) {}
+	public MemoryWriteException(string message, Exception innerException) : base(message, innerException) {}
 }
