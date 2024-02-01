@@ -584,14 +584,6 @@ public class Memory
     public T ReadValueFromMlPtr<T>(MultiLevelPtr mlPtr) where T : struct => this.ReadMemory<T>(this.ReadAddressFromMlPtr(mlPtr));
 
     /// <summary>
-    ///  Resolves the value from the address found from mlPtr
-    /// </summary>
-    /// <param name="mlPtr">The MultiLevelPtr to read from</param>
-    /// <typeparam name="T">The type associated with the given MultiLevelPtr.</typeparam>
-    /// <returns>Value found from the resolved MultiLevelPtr</returns>
-    public T ReadValueFromMlPtr<T>(MultiLevelPtr<T> mlPtr) where T : struct => this.ReadMemory<T>(this.ReadAddressFromMlPtr(mlPtr));
-
-    /// <summary>
     ///  Reads a string from the address found from mlPtr.
     ///  <inheritdoc cref="ReadString" />
     /// </summary>
