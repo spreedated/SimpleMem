@@ -49,8 +49,7 @@ namespace SimpleMem
         /// </param>
         /// <returns>Number of bytes read</returns>
         /// <exception cref="MemoryWriteException">Thrown if the memory failed to be written</exception>
-        internal unsafe static int WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte* lpBuffer, int dwSize,
-            bool isProtected = false)
+        internal unsafe static int WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte* lpBuffer, int dwSize, bool isProtected = false)
         {
             int lpflOldProtect = default;
             if (isProtected)
@@ -102,8 +101,7 @@ namespace SimpleMem
         /// <param name="dwSize"></param>
         /// <param name="isProtected">Whether the memory access is processed by a VirtualProtectEx call</param>
         /// <returns>Number of bytes read</returns>
-        internal unsafe static int ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte* lpBuffer, int dwSize,
-            bool isProtected = false)
+        internal unsafe static int ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte* lpBuffer, int dwSize, bool isProtected = false)
         {
             int lpflOldProtect = default;
             if (isProtected)

@@ -164,7 +164,7 @@ namespace SimpleMem
                     {
                         fixed (byte* bp = buffer)
                         {
-                            HelperFunctions.ReadProcessMemory(this.ProcessHandle, new IntPtr((long)memBasicInfo.BaseAddress), bp, CHUNK_SZ, out int _);
+                            ReadProcessMemory(this.ProcessHandle, new IntPtr((long)memBasicInfo.BaseAddress), bp, CHUNK_SZ, out int _);
                         }
                     }
 

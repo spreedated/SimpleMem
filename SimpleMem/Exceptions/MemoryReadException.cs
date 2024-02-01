@@ -12,7 +12,5 @@ namespace SimpleMem.Exceptions
         public MemoryReadException(string message) : base(message) { }
 
         public MemoryReadException(uint error) : base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") { }
-
-        public MemoryReadException(string message, Exception innerException) : base(message, innerException) { }
     }
 }

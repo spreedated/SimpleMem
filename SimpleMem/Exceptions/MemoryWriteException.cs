@@ -9,12 +9,6 @@ namespace SimpleMem.Exceptions
     /// </summary>
     public class MemoryWriteException : Exception
     {
-        public MemoryWriteException() { }
-
-        public MemoryWriteException(string message) : base(message) { }
-
         public MemoryWriteException(uint error) : base($"Error code {error} {ErrorCodes.CodeLookup.GetValueOrDefault(error)}") { }
-
-        public MemoryWriteException(string message, Exception innerException) : base(message, innerException) { }
     }
 }
