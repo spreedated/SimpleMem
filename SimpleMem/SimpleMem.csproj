@@ -13,18 +13,20 @@
       <PackageIcon>logo.png</PackageIcon>
       <PackageReadmeFile>README.md</PackageReadmeFile>
       <RepositoryUrl>https://github.com/spreedated/SimpleMem</RepositoryUrl>
-      <AssemblyVersion>1.2.0</AssemblyVersion>
+      <AssemblyVersion>1.2.1</AssemblyVersion>
+      <Version>1.2.1</Version>
+      <PackageVersion>1.2.1</PackageVersion>
       <PackageTags>memory,mem,memory read,memory write,read,write,hex,hexadecimal,pointer,pointer scan,pointerscan,offset,offsets,hack,hacking</PackageTags>
       <RepositoryType>git</RepositoryType>
       <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-      <Version>1.2.0</Version>
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
       <PackageReleaseNotes>Added 64-bit support, generic read/writes, AoB scan support</PackageReleaseNotes>
-      <PackageVersion>1.2.0</PackageVersion>
       <PackageLicenseUrl></PackageLicenseUrl>
       <PackageIconUrl>..\logo.png</PackageIconUrl>
       <Title>SimpleMem</Title>
       <LangVersion>latest</LangVersion>
+      <SignAssembly>True</SignAssembly>
+      <AssemblyOriginatorKeyFile>smem.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
